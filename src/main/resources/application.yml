@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: climate-aware-dc-ops
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dcops
+    username: dcops
+    password: dcops
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+server:
+  port: 8080
+
+# heuristic scoring weights & thresholds
+scoring:
+  weights:
+    temperature: 0.35
+    power: 0.30
+    humidity: 0.20
+    network: 0.15
+  thresholds:
+    critical: 0.80
+    warning: 0.55
+    normal: 0.30
+
+api:
+  disclaimer: "이 점수는 공개 데이터 기반 heuristic operational indicator입니다. 예측적 진실이 아닙니다."
