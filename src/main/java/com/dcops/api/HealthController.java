@@ -23,14 +23,19 @@ public class HealthController {
         Map<String, String> response = new HashMap<>();
 
         // Get overall health status
-        String status = healthEndpoint.health().getStatus().getCode();
+        HealthComponent health = healthEndpoint.health();
+        String status = health.getStatus().getCode();
         response.put("status", status);
 
         // Get database health status
         String dbStatus = "UNKNOWN";
-        HealthComponent dbComponent = healthEndpoint.health().getComponents().get("db");
-        if (dbComponent != null) {
-            dbStatus = dbComponent.getStatus().getCode();
+        if (health instanceof org.springframework.boot.actuate.health.CompositeHealth) {
+            org.springframework.boot.actuate.health.CompositeHealth compositeHealth =
+                (org.springframework.boot.actuate.health.CompositeHealth) health;
+            HealthComponent dbComponent = compositeHealth.getComponents().get("db");
+            if (dbComponent != null) {
+                dbStatus = dbComponent.getStatus().getCode();
+            }
         }
         response.put("db", dbStatus);
 
