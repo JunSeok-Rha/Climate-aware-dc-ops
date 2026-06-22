@@ -1,0 +1,32 @@
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Gradle
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Spring Boot
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# CSV / Data
+/data/raw/
+/data/processed/
+*.csv
+!/data/sample/*.csv
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / Secrets
+.env
+*.env.local
