@@ -42,3 +42,24 @@ scoring:
 
 api:
   disclaimer: "이 점수는 공개 데이터 기반 heuristic operational indicator입니다. 예측적 진실이 아닙니다."
+
+dcops:
+  scoring:
+    weights:
+      heat-risk:
+        temperature: 0.4
+        cpu-usage: 0.35
+        workload: 0.25
+      cooling-stress:
+        temperature: 0.35
+        humidity: 0.25
+        cpu-usage: 0.25
+        memory-usage: 0.15
+  threshold:
+    score-band:
+      low-max: 30.0
+      medium-max: 55.0
+      high-max: 75.0
+    imbalance-band:
+      none-max: 20.0
+      moderate-max: 50.0

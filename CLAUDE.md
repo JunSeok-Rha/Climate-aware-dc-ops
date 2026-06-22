@@ -30,3 +30,8 @@ feat: [무엇] — [왜]
 - Files.readAllLines() 사용 금지
 - application.yml 에이전트가 직접 수정 금지 (인간 작성)
 - 커밋 메시지 에이전트가 작성 금지
+
+## 경로 원칙
+모든 작업 경로 기준: ~/Desktop/Projects/climate-aware-dc-ops
+worktree 생성 시 절대 경로 사용:
+git worktree add ~/Desktop/Projects/[이름] [브랜치]
